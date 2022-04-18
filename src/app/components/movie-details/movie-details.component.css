@@ -1,0 +1,102 @@
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+	.ratingVotes {
+		text-align: left;
+	}
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+	.card-title {
+		font-size: 1.5em;
+	}
+
+	.ratingVotes {
+		text-align: left;
+	}
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+	.card-title {
+		font-size: 1.5em;
+	}
+
+	.ratingVotes {
+		text-align: left;
+	}
+
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+	.card-title {
+		font-size: 1.8em;
+	}
+
+	.ratingVotes {
+		text-align: right;
+	}
+}
+
+.pill {
+	padding: 10px 20px 10px 20px;
+}
+
+.detailPill{
+	padding: 10px 20px 10px 20px;
+	margin: 3px 0px 3px 3px;
+}
+
+.list{
+	list-style-type:none;
+	padding: 0;
+	margin: 0; 
+
+}
+/*
+.py-5 {
+    background-color: #000;
+    color: rgb(240, 240, 240);
+}
+
+.cont {
+    background-color: #000;
+}
+
+.otro {
+    background-color: #fff;
+}
+
+.poster {
+
+    box-shadow: 10px 10px 25px rgba(200, 200, 200, 0.7);
+    border-radius: 6px;
+    border: 2px solid #bababa;
+}
+
+.poster:hover{
+    transition: 1s;
+    transform: scale(1.05);
+}
+
+.postcard .postcard__tagbox {
+	display: flex;
+	flex-flow: row wrap;
+	font-size: 14px;
+	margin: 20px 0 0 0;
+	padding: 0;
+	justify-content: center;
+}
+
+.postcard .postcard__tagbox .tag__item {
+	display: inline-block;
+	background: rgba(83, 83, 83, 0.4);
+	border-radius: 3px;
+	padding: 2.5px 10px;
+	margin: 0 5px 5px 0;
+	cursor: default;
+	user-select: none;
+	transition: background-color 0.3s;
+}
+*/
