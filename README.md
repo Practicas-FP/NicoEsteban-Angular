@@ -1,5 +1,5 @@
-- _Autor_: Nicolás Esteban
-- _Fecha_: ***abril 2022
+- _**Autor**_: Nicolás Esteban_
+- _**Fecha**: abril/2022_
 
 
 # Movies-App
