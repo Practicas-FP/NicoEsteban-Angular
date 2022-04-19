@@ -10,7 +10,7 @@ El proyecto consiste en una aplicación web de películas en la cual el usuario 
 - Está desarrollado utilizando Angular v.13
 - La información de las películas es obtenida de la API [TMDB](themoviedb.org).
 - La gestión de la autenticación de los usuarios (inicio de sesión y registro) ha sido realizada con [Firebase Authentication](https://firebase.google.com).
-- La lista de Películas Favoritas de los usuarios también está implementada con Firebase, haciendo de uso del servicio [Cloud Storage (Firestore)](https://firebase.google.com)
+- La lista de Películas Favoritas de los usuarios también está implementada con Firebase, haciendo de uso del servicio [Firestore](https://firebase.google.com)
 
 ## Screenshots:
 
