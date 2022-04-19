@@ -1,4 +1,4 @@
-- _**Autor**_: Nicolás Esteban_
+- _**Autor**: Nicolás Esteban_
 - _**Fecha**: abril/2022_
 
 
