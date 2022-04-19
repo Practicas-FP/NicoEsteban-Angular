@@ -14,8 +14,6 @@ El proyecto consiste en una aplicación web de películas en la cual el usuario 
 
 ## Screenshots:
 
-### 1
 ![peliculas_populares](https://user-images.githubusercontent.com/43449804/164043603-d75822db-4d14-40e0-874d-6385b72b6b8a.png)
 
-### 2
 ![peliculas_favoritas](https://user-images.githubusercontent.com/43449804/164043731-c109e30d-acbe-4241-8478-6c0037e37671.png)
