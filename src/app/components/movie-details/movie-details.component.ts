@@ -6,14 +6,13 @@ import { filter } from 'rxjs/operators';
 import { IMovie } from 'src/app/interfaces/movie.interface';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import { HttpClient } from '@angular/common/http';
 
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
-import { HttpClient } from '@angular/common/http';
 
 //FIRESTORE:
 // Initialize Firebase
@@ -38,6 +37,16 @@ export class MovieDetailsComponent implements OnInit {
   showErrorMessaje!: boolean;
   showAddButton: boolean = true;
   showAddedButton: boolean = false;
+
+  //Movie info from DB:
+  _title!: string;
+  _poster_path !: string;
+  _release_date!: string;
+  _vote_average!: string;
+  _vote_count!: string;
+
+  //Pagination
+  p: number = 1;
 
 
   constructor(
@@ -90,14 +99,6 @@ export class MovieDetailsComponent implements OnInit {
   }
 
 
-  //id
-  _title!: string;
-  _poster_path !: string;
-  _release_date!: string;
-  _vote_average!: string;
-  _vote_count!: string;
-
-
   getMovieData() {
     const url = `https://api.themoviedb.org/3/movie/${this.movieId}?api_key=572f6e73385919e6eb3a365a3e144cce&language=es-ES`;
 
@@ -110,19 +111,18 @@ export class MovieDetailsComponent implements OnInit {
         this._vote_count = response.vote_count;
         console.log("[getMovieData] -> datos de la peli obtenidos");
       }, err => {
-        console.log("[getMovieData] -> Error al obtener los datos de la peli");
-        //this.router.navigate(["error"])
+        console.log("[getMovieData] -> Error al obtener los datos de la peli:" + err);
       })
   }
 
   async addToWatchlist() {
     
     if (this.userIsLoggued == true) {
-
       //Saving in Firestore
       try {
+        
+        /*FUNCIONA: guarda en la DB
         const docRef = await addDoc(collection(db, "watchlist"), {
-
           //Data saved in Firestore:
           user_uid: this.userUID,
           movie_id: this.movieId,
@@ -131,8 +131,17 @@ export class MovieDetailsComponent implements OnInit {
           movie_release_date: this._release_date,
           movie_vote_average: this._vote_average,
           movie_vote_count: this._vote_count,
-        });
+        });*/
 
+        await setDoc(doc(db, "watchlist", this.userUID+this.movieId), {
+          user_uid: this.userUID,
+          movie_id: this.movieId,
+          movie_title: this._title,
+          movie_poster_path: this._poster_path,
+          movie_release_date: this._release_date,
+          movie_vote_average: this._vote_average,
+          movie_vote_count: this._vote_count,
+        });
 
       } catch (e) {
         console.error("[addToWatchlist] -> Error adding document: ", e);

@@ -28,6 +28,9 @@ import { SignInComponent } from './user-sesion/sign-in/sign-in.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { WatchlistModule } from './components/watchlist/watchlist.module';
 import { WatchlistComponent } from './components/watchlist/watchlist.component';
+import { NgxPaginationModule} from 'ngx-pagination';
+
+
 
 @NgModule({
   declarations: [
@@ -55,7 +58,9 @@ import { WatchlistComponent } from './components/watchlist/watchlist.component';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    NgxPaginationModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

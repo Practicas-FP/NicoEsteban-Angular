@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { IMovie } from 'src/app/interfaces/movie.interface';
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
-import { getFirestore } from "firebase/firestore";
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import { IMovie } from 'src/app/interfaces/movie.interface';
-import { Observable } from 'rxjs';
+import { addDoc, deleteField, doc, getFirestore, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, getDocs, query, where } from "firebase/firestore";
+
 
 //FIRESTORE:
 // Initialize Firebase
@@ -22,8 +22,13 @@ const db = getFirestore(app);
 export class WatchlistComponent implements OnInit {
 
   movie!: IMovie;
-  public watchlist: any[] = [];
+  watchlist: any[] = [];
   userUID: string = "";
+  movieDeleted: boolean = false;
+  movieDeletedTitle: string = "";
+
+  //Pagination
+  p: number = 1;
 
   constructor() { }
 
@@ -38,24 +43,21 @@ export class WatchlistComponent implements OnInit {
         this.userUID = "";
       }
     })
-
   }
 
   async getUsersWatchlist() {
     //Obtaining user's whatchlist form Firestore:
     const q = query(collection(db, "watchlist"), where("user_uid", "==", this.userUID));
-
-    //Sustituye q2 - collection(db, "users")
     const querySnapshot = await getDocs(q);
+
     querySnapshot.forEach((doc) => {
-      
       this.movie = {
         id: doc.get("movie_id"),
         title: doc.get("movie_title"),
-        poster_path:  doc.get("movie_poster_path"),
-        release_date:  doc.get("movie_release_date"),
-        vote_average:  doc.get("movie_vote_average"),
-        vote_count:  doc.get("movie_vote_count"),
+        poster_path: doc.get("movie_poster_path"),
+        release_date: doc.get("movie_release_date"),
+        vote_average: doc.get("movie_vote_average"),
+        vote_count: doc.get("movie_vote_count"),
         original_language: "",
         overview: "",
         runtime: "",
@@ -63,12 +65,20 @@ export class WatchlistComponent implements OnInit {
       }
       this.watchlist.push(this.movie)
     });
-
   }
 
+  async delete(movieId: string) {
+    console.log("BORRAR: " + movieId);
 
-
-
-
+    try {
+      await deleteDoc(doc(db, "watchlist", this.userUID+movieId));
+      this.movieDeleted = true;
+      setTimeout(() => {
+        window.location.reload();
+      }, 2500);
+    } catch (e) {
+      console.error("[delete()] -> Error al borrar película: ", e);
+    }
+  }
 
 }

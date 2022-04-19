@@ -1,26 +1,3 @@
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">MoviesApp</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" [routerLink]="['/upcoming-movies']">Upcoming</a></li>
-                <li class="nav-item"><a class="nav-link active" [routerLink]="['/popular-movies']">Popular</a></li>
-                <li class="nav-item"><a class="nav-link active" [routerLink]="['/top-rated-movies']">Top rated</a></li>
-            </ul>
-            <div class="d-flex">
-                <input #input type="text" class="form-control" placeholder="Search a movie..."
-                    (keyup.enter)="searchMovies(input.value)" />
-                <button type="button" class="btn btn-success" (click)="searchMovies(input.value)">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</nav>-->
-
 <!-- Container -->
 <div class="container">
 
@@ -36,7 +13,6 @@
     <!-- Title -->
     <h1 [hidden]="hideTitle" style="margin-bottom: 20px;">Películas populares</h1>
     <h3 [hidden]="hideResultsFor">Resultados para: "{{movieSearched}}"</h3>
-  
   
   
     <!-- Container -->

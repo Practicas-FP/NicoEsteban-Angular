@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MovieDetailsRoutingModule } from './movie-details-routing.module';
 
 
+
 @NgModule({
   declarations: [
   ],

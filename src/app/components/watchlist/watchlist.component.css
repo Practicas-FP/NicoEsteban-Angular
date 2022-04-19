@@ -1,4 +1,7 @@
-
+.stylePagination /deep/ .ngx-pagination .current {
+    background: #4bbf73;
+  }
+  
 .searchBar {
     margin: 20px  0 40px 0;
 }
