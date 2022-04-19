@@ -15,6 +15,8 @@ export class PopularMoviesComponent implements OnInit {
   hidePagination: boolean = false;
   movieSearched: string = "";
   pagination: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  //Pagination
+  p: number = 1;
 
   constructor(private movieSvc: MovieService) { }
 

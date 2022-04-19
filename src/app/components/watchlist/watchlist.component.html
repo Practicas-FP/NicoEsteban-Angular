@@ -8,8 +8,8 @@
   <div class="row">
 
 
-    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 moviesLine"
-      *ngFor="let movie of watchlist | paginate: { itemsPerPage: 4, currentPage: p }">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 moviesLine"
+      *ngFor="let movie of watchlist | paginate: { itemsPerPage: 6, currentPage: p }">
 
 
       <!-- Card -->
@@ -27,7 +27,7 @@
               date:'y'}})</a>
           </h5>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item badge rounded-pill bg-success green_tag">Valoración: {{movie.vote_average}} <i
+            <li class="list-group-item badge rounded-pill bg-success green_tag">Nota: {{movie.vote_average}} <i
                 class="fa fa-star"></i></li>
             <li class="list-group-item badge rounded-pill bg-success green_tag">Votos: {{movie.vote_count}} <i
                 class="fa fa-thumbs-up" aria-hidden="true"></i></li>

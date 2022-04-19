@@ -25,7 +25,6 @@
 	.ratingVotes {
 		text-align: left;
 	}
-
 }
 
 /*Extra large devices (large desktops, 1200px and up)*/
@@ -73,7 +72,7 @@
 
 .titleCard {
     text-decoration: none;
-	font-size: small;
+	font-size: 0.4em;
 }
 
 .title:hover {
@@ -82,7 +81,7 @@
 
 .green_tag {
     color: #fff;
-    margin: 5px 15px 5px 20px;
+    margin: 0px -10px 5px -10px;
     padding: 10px;
     font-size: small;
 }

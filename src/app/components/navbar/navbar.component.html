@@ -33,6 +33,10 @@
             <a class="nav-link btn btn-outline-success" [routerLink]="['/sign-in']">Registrarse <i
                 class="fa fa-pencil-square-o"></i></a>
           </li>
+          <li class="nav-item" *ngIf="userIsLoggued">
+            <a class="nav-link" [routerLink]="['/watchlist']">Mis favoritas <i
+                class="fa fa-star"></i></a>
+          </li>
           <li class="nav-item dropdown" *ngIf="userIsLoggued">
             <a class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" href="#">Mi cuenta</a>
             <div class="dropdown-menu accountDropdown">

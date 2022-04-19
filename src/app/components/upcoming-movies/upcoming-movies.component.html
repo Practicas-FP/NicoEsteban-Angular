@@ -1,81 +1,3 @@
-<!-- Narvbar -->
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Movies<span class="redLogo">App</span></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/home']">Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/upcoming-movies']">Próximos estrenos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/popular-movies']">Populares</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/top-rated-movies']">Mejor valoradas</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item" *ngIf="userIsLoggued">
-            <a class="nav-link btn btn-outline-success" href="#">Log-In</a>
-          </li>
-          <li class="nav-item" *ngIf="userIsLoggued">
-            <a class="nav-link btn btn-outline-success" href="#">Sign-In</a>
-          </li>
-          <li class="nav-item dropdown" *ngIf="!userIsLoggued">
-            <a class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-              aria-expanded="false">Mi cuenta</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Mi Lista</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Cerrar sesión</a>
-            </div>
-          </li>
-        </ul>
-      </form>
-    </div>
-  </div>
-</nav>-->
-<!-- Navbar -->
-
-<!--
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container px-4 px-lg-5">
-    <a class="navbar-brand" href="/">MoviesApp</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-        class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-        <li class="nav-item"><a class="nav-link active" [routerLink]="['/upcoming-movies']">Upcoming</a></li>
-        <li class="nav-item"><a class="nav-link active" [routerLink]="['/popular-movies']">Popular</a></li>
-        <li class="nav-item"><a class="nav-link active" [routerLink]="['/top-rated-movies']">Top rated</a></li>
-      </ul>
-      <div class="d-flex">
-        <input #input type="text" class="form-control" placeholder="Search a movie..."
-          (keyup.enter)="searchMovies(input.value)" />
-        <button type="button" class="btn btn-success" (click)="searchMovies(input.value)">
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-        <li class="nav-item"><a class="nav-link active" [routerLink]="['/log-in']">Log-In</a></li>
-        <li class="nav-item"><a class="nav-link active" [routerLink]="['/sign-in']">Sign-In</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
--->
-
 <!-- Container -->
 <div class="container">
 
@@ -99,7 +21,10 @@
 
     <!-- Movies -->
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 moviesLine" *ngFor="let movie of listOfMovies | async">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 moviesLine" *ngFor="let movie of listOfMovies | async | paginate: { id: 'foo',
+      itemsPerPage: 18,
+      currentPage: p,
+      totalItems: 20 }">
 
         <!-- Card -->
         <div class="card">
@@ -114,22 +39,14 @@
               <a [routerLink]="['/movie-details', movie.id]" class="title">{{movie.title}} ({{movie.release_date |
                 date:'y'}})</a>
             </h5>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item badge rounded-pill bg-success green_tag">Valoración: {{movie.vote_average}} <i
+            <ul class="list-group list-group-flush abc">
+              <li class="list-group-item badge rounded-pill bg-success green_tag">Nota: {{movie.vote_average}} <i
                   class="fa fa-star"></i></li>
               <li class="list-group-item badge rounded-pill bg-success green_tag">Votos: {{movie.vote_count}} <i
                   class="fa fa-thumbs-up" aria-hidden="true"></i></li>
             </ul>
-            <!--<p class="card-text" style="margin-top: 20px;"><span style="font-weight: bold;">Fecha de estreno:</span></p>
-            <p class="card-subtitle" style="margin-top: -15px;">{{movie.release_date | date:'d MMMM, y'}}</p>-->
-            <!--<p class="card-text" style="margin-top: 10px;"><span style="font-weight: bold;">Lenguaje original:</span> {{movie.original_language | uppercase}}</p>-->
           </div>
-          <!--<ul class="list-group list-group-flush">
-            <li class="list-group-item badge rounded-pill bg-success green_tag">Valoración: {{movie.vote_average}} <i
-                class="fa fa-star"></i></li>
-            <li class="list-group-item badge rounded-pill bg-success green_tag">Votos: {{movie.vote_count}} <i
-                class="fa fa-thumbs-up" aria-hidden="true"></i></li>
-          </ul>-->
+
         </div>
         <!-- Card -->
 

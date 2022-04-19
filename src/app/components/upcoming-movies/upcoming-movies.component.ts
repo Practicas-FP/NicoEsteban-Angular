@@ -18,6 +18,9 @@ export class UpcomingMoviesComponent implements OnInit {
   movieSearched: string = "";
   pagination: number[] = [1, 2, 3, 4, 5];
 
+  //Pagination
+  p: number = 1;
+
   constructor(private movieSvc: MovieService) { }
 
   ngOnInit(): void {

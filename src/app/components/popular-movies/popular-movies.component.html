@@ -15,51 +15,46 @@
     <h3 [hidden]="hideResultsFor">Resultados para: "{{movieSearched}}"</h3>
   
   
-    <!-- Container -->
-    <div class="container">
-  
-      <!-- Movies -->
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 moviesLine" *ngFor="let movie of listOfMovies | async">
-  
-          <!-- Card -->
-          <div class="card">
-            <a *ngIf="movie.poster_path !== null" [routerLink]="['/movie-details', movie.id]">
-              <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="{{movie.title}}">
-            </a>
-            <img *ngIf="movie.poster_path == null" class="card-img-top"
-              src="https://dummyimage.com/500x750/ffffff/000000.jpg&text=POSTER+NOT+AVAILABLE" alt="Poster not available">
-  
-              <div class="card-body">
-                <h5 class="card-title titleBox">
-                  <a [routerLink]="['/movie-details', movie.id]" class="title">{{movie.title}} ({{movie.release_date |
-                    date:'y'}})</a>
-                </h5>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item badge rounded-pill bg-success green_tag">Valoración: {{movie.vote_average}} <i
-                      class="fa fa-star"></i></li>
-                  <li class="list-group-item badge rounded-pill bg-success green_tag">Votos: {{movie.vote_count}} <i
-                      class="fa fa-thumbs-up" aria-hidden="true"></i></li>
-                </ul>
-                <!--<p class="card-text" style="margin-top: 20px;"><span style="font-weight: bold;">Fecha de estreno:</span></p>
-                <p class="card-subtitle" style="margin-top: -15px;">{{movie.release_date | date:'d MMMM, y'}}</p>-->
-                <!--<p class="card-text" style="margin-top: 10px;"><span style="font-weight: bold;">Lenguaje original:</span> {{movie.original_language | uppercase}}</p>-->
-              </div>
-              <!--<ul class="list-group list-group-flush">
-                <li class="list-group-item badge rounded-pill bg-success green_tag">Valoración: {{movie.vote_average}} <i
-                    class="fa fa-star"></i></li>
-                <li class="list-group-item badge rounded-pill bg-success green_tag">Votos: {{movie.vote_count}} <i
-                    class="fa fa-thumbs-up" aria-hidden="true"></i></li>
-              </ul>-->
+      <!-- Container -->
+  <div class="container">
+
+    <!-- Movies -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 moviesLine" *ngFor="let movie of listOfMovies | async | paginate: { id: 'foo',
+      itemsPerPage: 18,
+      currentPage: p,
+      totalItems: 20 }">
+
+        <!-- Card -->
+        <div class="card">
+          <a *ngIf="movie.poster_path !== null" [routerLink]="['/movie-details', movie.id]">
+            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="{{movie.title}}">
+          </a>
+          <img *ngIf="movie.poster_path == null" class="card-img-top"
+            src="https://dummyimage.com/500x750/ffffff/000000.jpg&text=POSTER+NOT+AVAILABLE" alt="Poster not available">
+
+          <div class="card-body">
+            <h5 class="card-title titleBox">
+              <a [routerLink]="['/movie-details', movie.id]" class="title">{{movie.title}} ({{movie.release_date |
+                date:'y'}})</a>
+            </h5>
+            <ul class="list-group list-group-flush abc">
+              <li class="list-group-item badge rounded-pill bg-success green_tag">Nota: {{movie.vote_average}} <i
+                  class="fa fa-star"></i></li>
+              <li class="list-group-item badge rounded-pill bg-success green_tag">Votos: {{movie.vote_count}} <i
+                  class="fa fa-thumbs-up" aria-hidden="true"></i></li>
+            </ul>
           </div>
-          <!-- Card -->
-          
+
         </div>
+        <!-- Card -->
+
       </div>
-      <!-- Movies -->
-  
     </div>
-    <!-- Container -->
+    <!-- Movies -->
+
+  </div>
+  <!-- Container -->
   
   
     <!-- Navigation -->

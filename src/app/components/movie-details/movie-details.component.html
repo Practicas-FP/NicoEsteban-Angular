@@ -154,8 +154,8 @@
     <div class=" d-flex justify-content-center">
         <div class="row" style="max-width: 1000px;">
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 moviesLine"
-                *ngFor="let relatedMovie of listOfRelatedMovies | async | paginate: { itemsPerPage: 4, currentPage: p }">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 moviesLine"
+                *ngFor="let relatedMovie of listOfRelatedMovies | async | paginate: { itemsPerPage: 6, currentPage: p }">
 
                 <div class="card cardRelated" style="margin: 5px 0 5px 0">
                     <a *ngIf="relatedMovie.poster_path !== null" [routerLink]="['/movie-details', relatedMovie.id]">
@@ -166,7 +166,7 @@
                         src="https://dummyimage.com/500x750/ffffff/000000.jpg&text=POSTER+NOT+AVAILABLE"
                         alt="Poster not available">
 
-                    <div class="card-body">
+                    <!--<div class="card-body">
                         <h5 class="card-title titleBox">
                             <a [routerLink]="['/movie-details', relatedMovie.id]"
                                 class="titleCard">{{relatedMovie.title}}
@@ -174,12 +174,12 @@
                                 date:'y'}})</a>
                         </h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item badge rounded-pill bg-success green_tag">Valoración:
+                            <li class="list-group-item badge rounded-pill bg-success green_tag">Nota:
                                 {{relatedMovie.vote_average}} <i class="fa fa-star"></i></li>
                             <li class="list-group-item badge rounded-pill bg-success green_tag">Votos:
                                 {{relatedMovie.vote_count}} <i class="fa fa-thumbs-up" aria-hidden="true"></i></li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
 
             </div>

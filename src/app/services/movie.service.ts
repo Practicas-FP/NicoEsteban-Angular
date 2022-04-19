@@ -72,7 +72,7 @@ export class MovieService {
   }
 
   getRelatedMovies(movieId: number) {
-    return this.http.get<any>(this.URL_RELATED_MOVIES + `${movieId}/similar?api_key=${this.API_KEY}&language=en-US&page=1`)
+    return this.http.get<any>(this.URL_RELATED_MOVIES + `${movieId}/similar?api_key=${this.API_KEY}&language=es-ES&page=1`)
       .pipe(map((data: any) => data.results));
   }
 
