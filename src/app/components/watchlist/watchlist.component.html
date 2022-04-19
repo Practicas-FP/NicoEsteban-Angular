@@ -1,0 +1,53 @@
+
+<!-- Container -->
+<div class="container">
+
+  
+    <!-- Title -->
+    <h1 style="margin: 20px 0 20px 0;">Mi Lista de Reproducción</h1>
+  
+    <!-- Container -->
+    <div class="container">
+  
+      <!-- Movies -->
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 moviesLine" *ngFor="let movie of watchlist">
+  
+          <!-- Card -->
+          <div class="card">
+            <a *ngIf="movie.poster_path !== null" [routerLink]="['/movie-details', movie.id]">
+              <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="{{movie.title}}">
+            </a>
+            <img *ngIf="movie.poster_path == null" class="card-img-top"
+              src="https://dummyimage.com/500x750/ffffff/000000.jpg&text=POSTER+NOT+AVAILABLE" alt="Poster not available">
+  
+              <div class="card-body">
+                <h5 class="card-title titleBox">
+                  <a [routerLink]="['/movie-details', movie.id]" class="title">{{movie.title}} ({{movie.release_date |
+                    date:'y'}})</a>
+                </h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item badge rounded-pill bg-success green_tag">Valoración: {{movie.vote_average}} <i
+                      class="fa fa-star"></i></li>
+                  <li class="list-group-item badge rounded-pill bg-success green_tag">Votos: {{movie.vote_count}} <i
+                      class="fa fa-thumbs-up" aria-hidden="true"></i></li>
+                </ul>
+              </div>
+             
+          </div>
+          <!-- Card -->
+          
+        </div>
+      </div>
+      <!-- Movies -->
+  
+    </div>
+    <!-- Container -->
+  
+  
+  <!-- Footer-->
+  <footer class="py-5" style="background-color: #1a1a1a; margin-top: 20px;">
+    <div class="container">
+      <p class="m-0 text-center text-white">MoviesApp 2022</p>
+    </div>
+  </footer>

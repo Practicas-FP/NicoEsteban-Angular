@@ -13,6 +13,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
+import { HttpClient } from '@angular/common/http';
 
 //FIRESTORE:
 // Initialize Firebase
@@ -38,11 +39,13 @@ export class MovieDetailsComponent implements OnInit {
   showAddButton: boolean = true;
   showAddedButton: boolean = false;
 
+
   constructor(
     private movieSvc: MovieService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private http: HttpClient,
   ) { }
 
   ngOnInit(): void {
@@ -55,8 +58,10 @@ export class MovieDetailsComponent implements OnInit {
       });
     this.movie = this.movieSvc.getMovieDetails(this.movieId);
 
+
     this.getRelatedMovies();
     this.onUrlChange();
+    this.getMovieData();
 
     // Checking if user is loggued in:
     const auth = getAuth();
@@ -69,6 +74,7 @@ export class MovieDetailsComponent implements OnInit {
       }
     });
   }
+  //--OnInit
 
   getRelatedMovies() {
     this.listOfRelatedMovies = this.movieSvc.getRelatedMovies(this.movieId);
@@ -83,19 +89,54 @@ export class MovieDetailsComponent implements OnInit {
       });
   }
 
+
+  //id
+  _title!: string;
+  _poster_path !: string;
+  _release_date!: string;
+  _vote_average!: string;
+  _vote_count!: string;
+
+
+  getMovieData() {
+    const url = `https://api.themoviedb.org/3/movie/${this.movieId}?api_key=572f6e73385919e6eb3a365a3e144cce&language=es-ES`;
+
+    this.http.get<IMovie>(url)
+      .subscribe((response) => {
+        this._title = response.title;
+        this._poster_path = response.poster_path;
+        this._release_date = response.release_date;
+        this._vote_average = response.vote_average;
+        this._vote_count = response.vote_count;
+        console.log("[getMovieData] -> datos de la peli obtenidos");
+      }, err => {
+        console.log("[getMovieData] -> Error al obtener los datos de la peli");
+        //this.router.navigate(["error"])
+      })
+  }
+
   async addToWatchlist() {
+    
     if (this.userIsLoggued == true) {
 
       //Saving in Firestore
       try {
         const docRef = await addDoc(collection(db, "watchlist"), {
+
+          //Data saved in Firestore:
           user_uid: this.userUID,
           movie_id: this.movieId,
+          movie_title: this._title,
+          movie_poster_path: this._poster_path,
+          movie_release_date: this._release_date,
+          movie_vote_average: this._vote_average,
+          movie_vote_count: this._vote_count,
         });
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
 
+
+      } catch (e) {
+        console.error("[addToWatchlist] -> Error adding document: ", e);
+      }
       this.showAddButton = false;
       this.showAddedButton = true;
       this.showSuccessMessaje = true;
@@ -104,6 +145,7 @@ export class MovieDetailsComponent implements OnInit {
       this.showErrorMessaje = true;
     }
   }
+
 
   goBack(): void {
     this.location.back();

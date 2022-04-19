@@ -3,8 +3,6 @@ import { environment } from 'src/environments/environment';
 import { getAuth, onAuthStateChanged, signOut } from '@firebase/auth';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-
 
 //FIRESTORE:
 // Initialize Firebase
@@ -20,6 +18,7 @@ const db = getFirestore(app);
 export class NavbarComponent implements OnInit {
 
   userIsLoggued!: boolean;
+  userUID: string = "";
 
   constructor() { }
 
@@ -28,46 +27,11 @@ export class NavbarComponent implements OnInit {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         this.userIsLoggued = true;
+        this.userUID = user.uid;
       } else {
         this.userIsLoggued = false;
       }
     })
-  }
-
-  async prueba() {
-
-    try {
-      const docRef = await addDoc(collection(db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  }
-
-  async prueba2() {
-    try {
-      const docRef = await addDoc(collection(db, "users"), {
-        first: "Alan",
-        middle: "Mathison",
-        last: "Turing",
-        born: 1912
-      });
-
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  }
-
-  async leer() {
-    const querySnapshot = await getDocs(collection(db, "users"));
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-    });
   }
 
   onLogout() {

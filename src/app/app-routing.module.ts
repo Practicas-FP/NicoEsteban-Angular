@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'upcoming-movies', loadChildren: () => import('./components/upcoming-movies/upcoming-movies.module').then(m => m.UpcomingMoviesModule) },
   { path: 'top-rated-movies', loadChildren: () => import('./components/top-rated-movies/top-rated-movies.module').then(m => m.TopRatedMoviesModule) },
   { path: 'movie-details/:id', loadChildren: () => import('./components/movie-details/movie-details.module').then(m => m.MovieDetailsModule) },
+  { path: 'watchlist', loadChildren: () => import('./components/watchlist/watchlist.module').then(m => m.WatchlistModule) },
   { path: 'log-in', loadChildren: () => import('./user-sesion/log-in/log-in.module').then(m => m.LogInModule) },
   { path: 'sign-in', loadChildren: () => import('./user-sesion/sign-in/sign-in.module').then(m => m.SignInModule) }
 

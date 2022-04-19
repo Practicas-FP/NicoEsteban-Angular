@@ -22,15 +22,6 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/top-rated-movies']">Mejor valoradas</a>
         </li>
-        <li class="nav-item" *ngIf="userIsLoggued">
-          <a class="nav-link" [routerLink]="['/top-rated-movies']">SI</a>
-        </li>
-        <li class="nav-item" *ngIf="!userIsLoggued">
-          <a class="nav-link" [routerLink]="['/top-rated-movies']">NO</a>
-        </li>
-        <button (click)="prueba()">escribe1</button>
-        <button (click)="prueba2()">escribe2</button>
-        <button (click)="leer()">leer</button>
       </ul>
       <form class="d-flex">
         <ul class="navbar-nav me-auto">
@@ -45,7 +36,7 @@
           <li class="nav-item dropdown" *ngIf="userIsLoggued">
             <a class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" href="#">Mi cuenta</a>
             <div class="dropdown-menu accountDropdown">
-              <a class="dropdown-item" href="#">Mi Lista</a>
+              <a class="dropdown-item" [routerLink]="['/watchlist']">Mi Lista</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" (click)="onLogout()">Cerrar sesión <i class="fa fa-sign-out"></i></a>
             </div>

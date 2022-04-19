@@ -26,6 +26,8 @@ import { SignInModule } from './user-sesion/sign-in/sign-in.module';
 import { LogInComponent } from './user-sesion/log-in/log-in.component';
 import { SignInComponent } from './user-sesion/sign-in/sign-in.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { WatchlistModule } from './components/watchlist/watchlist.module';
+import { WatchlistComponent } from './components/watchlist/watchlist.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MovieDetailsComponent,
     LogInComponent, 
     SignInComponent, 
-    NavbarComponent
+    NavbarComponent,
+    WatchlistComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MovieDetailsModule,
     LogInModule,
     SignInModule,
+    WatchlistModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),

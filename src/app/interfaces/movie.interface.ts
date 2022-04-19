@@ -1,5 +1,5 @@
 export interface IMovie {
-    id: number;
+    /*id: number;
     homepage: string;
     original_language: string;
     original_title: string;
@@ -13,5 +13,16 @@ export interface IMovie {
     vote_count: number;
     runtime: number;
     genres: any;
-    status: string;
+    status: string;*/
+    id: any;
+    title: any;
+    original_language: any;
+    //original_title: any;
+    overview: any;
+    poster_path: any;
+    release_date: any;
+    vote_average: any;
+    vote_count: any;
+    runtime: any;
+    genres: any;
 }
